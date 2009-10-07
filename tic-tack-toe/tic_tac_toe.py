@@ -9,6 +9,9 @@ class game:
 
     def play(self, token=None, pos=None):
         """
-        Please finish
+        Places a token if possible
         """
-        self.board[pos] = token
+        if self.board[pos] == self.EMPTY:
+            self.board[pos] = token
+        else:
+            return 'TAKEN'

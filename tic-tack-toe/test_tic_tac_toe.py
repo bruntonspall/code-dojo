@@ -69,15 +69,27 @@ def full_integration_test():
     #assert state == [ 'X', 'X', 'X', '_', '_', 'O', 'O', '_', '_', ]
     #assert status == 'X WINS'
 
-def setup_board_test():
+def test_we_can_setup_board():
     """ This is a basic test to ensure that we can setup a valid board"""
 
     ttt = tic_tac_toe.game()
     assert ttt.board == [ '_', '_', '_', '_', '_', '_', '_', '_', '_', ]
 
-def can_place_counter_on_board_test():
+def test_can_place_counter_on_board():
+    """ Test that we can place tokens on the board """
+
     ttt = tic_tac_toe.game()
     ttt.play('X', 0)
     assert ttt.board == [ 'X', '_', '_', '_', '_', '_', '_', '_', '_', ]
     ttt.play('X', 1)
     assert ttt.board == [ 'X', 'X', '_', '_', '_', '_', '_', '_', '_', ]
+
+def test_cannot_place_token_on_existing_token():
+    """ Test that we cannot place a token over hte top of an existing token """
+
+    ttt = tic_tac_toe.game()
+    ttt.play('X', 0)
+    assert ttt.board == [ 'X', '_', '_', '_', '_', '_', '_', '_', '_', ]
+    status = ttt.play('O', 0)
+    assert ttt.board == [ 'X', '_', '_', '_', '_', '_', '_', '_', '_', ]
+    assert status == 'TAKEN'
