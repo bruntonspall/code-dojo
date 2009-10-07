@@ -121,3 +121,16 @@ def test_that_x_must_go_first():
     status = ttt.play(NAUGHT, 2)
     assert ttt.board == [ CROSS, NAUGHT, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, ]
     assert status == 'BAD TURN'
+
+def test_for_winning_line():
+    """ Test that we can win by placing a horizontal line. """
+
+    ttt = game()
+    status = ttt.play(CROSS, 0)
+    status = ttt.play(NAUGHT, 8)
+    status = ttt.play(CROSS, 1)
+    status = ttt.play(NAUGHT, 7)
+
+    status = ttt.play(CROSS, 2)
+    assert ttt.board == [ CROSS, CROSS, CROSS, EMPTY, EMPTY, EMPTY, EMPTY, NAUGHT, NAUGHT, ]
+    assert status == 'CROSS WINS'
