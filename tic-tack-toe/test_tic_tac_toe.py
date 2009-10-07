@@ -96,10 +96,7 @@ def test_cannot_place_token_on_existing_token():
 
 def test_that_x_must_go_first():
     """ Test that we cannot place tokens out of turn.
-
-        The rules are:
             Player X goes first
-            Each player takes alternating turns
     """
 
     ttt = tic_tac_toe.game()
@@ -107,3 +104,20 @@ def test_that_x_must_go_first():
     assert ttt.board == [ '_', '_', '_', '_', '_', '_', '_', '_', '_', ]
     assert status == 'BAD TURN'
 
+def test_that_x_must_go_first():
+    """ Test that we cannot place tokens out of turn.
+            Each player takes alternating turns
+    """
+
+    ttt = tic_tac_toe.game()
+    status = ttt.play('X', 0)
+    status = ttt.play('X', 1)
+    assert ttt.board == [ 'X', '_', '_', '_', '_', '_', '_', '_', '_', ]
+    assert status == 'BAD TURN'
+
+    # Advance a turn
+    status = ttt.play('O', 1)
+
+    status = ttt.play('O', 2)
+    assert ttt.board == [ 'X', 'O', '_', '_', '_', '_', '_', '_', '_', ]
+    assert status == 'BAD TURN'
