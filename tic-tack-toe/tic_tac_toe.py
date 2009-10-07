@@ -8,6 +8,12 @@ class game:
         self.board = [game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY]
         self.play_next = 'X'
 
+    def _toggle_turn(self):
+        if self.play_next == 'X':
+            self.play_next = 'O'
+        else:
+            self.play_next = 'X'
+
     def play(self, token=None, pos=None):
         """
         Places a token if possible
@@ -18,7 +24,4 @@ class game:
             return 'TAKEN'
         else:
             self.board[pos] = token
-            if self.play_next == 'X':
-                self.play_next = 'O'
-            else:
-                self.play_next = 'X'
+            self._toggle_turn()
