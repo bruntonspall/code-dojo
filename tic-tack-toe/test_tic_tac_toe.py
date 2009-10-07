@@ -131,3 +131,24 @@ def test_for_winning_line():
     status = ttt.play(CROSS, 2)
     assert ttt.board == [ CROSS, CROSS, CROSS, EMPTY, EMPTY, EMPTY, EMPTY, NAUGHT, NAUGHT, ]
     assert status == 'CROSS WINS'
+
+def test_for_all_winning_horizontal_lines():
+    """ Test that we can win by placing a horizontal line. """
+
+    ttt = game()
+    ttt.board = [ CROSS, CROSS, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, ]
+
+    status = ttt.play(CROSS, 2)
+    assert status == 'CROSS WINS'
+
+    ttt = game()
+    ttt.board = [ EMPTY, EMPTY, EMPTY, CROSS, CROSS, EMPTY, EMPTY, EMPTY, EMPTY, ]
+
+    status = ttt.play(CROSS, 5)
+    assert status == 'CROSS WINS'
+
+    ttt = game()
+    ttt.board = [ EMPTY, EMPTY, EMPTY, EMPTY, NAUGHT, NAUGHT, CROSS, CROSS, EMPTY, ]
+
+    status = ttt.play(CROSS, 8)
+    assert status == 'CROSS WINS'

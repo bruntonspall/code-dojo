@@ -28,5 +28,10 @@ class game:
         else:
             self.board[pos] = token
             self._toggle_turn()
+
         if self.board[0] == self.board[1] and self.board[1] == self.board[2]:
+            return 'CROSS WINS'
+        if self.board[3] == self.board[4] and self.board[4] == self.board[5]:
+            return 'CROSS WINS'
+        if self.board[6] == self.board[7] and self.board[7] == self.board[8]:
             return 'CROSS WINS'
