@@ -74,3 +74,10 @@ def setup_board_test():
 
     ttt = tic_tac_toe.game()
     assert ttt.board == [ '_', '_', '_', '_', '_', '_', '_', '_', '_', ]
+
+def can_place_counter_on_board_test():
+    ttt = tic_tac_toe.game()
+    ttt.play('X', 0)
+    assert ttt.board == [ 'X', '_', '_', '_', '_', '_', '_', '_', '_', ]
+    ttt.play('X', 1)
+    assert ttt.board == [ 'X', 'X', '_', '_', '_', '_', '_', '_', '_', ]

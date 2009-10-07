@@ -9,8 +9,9 @@ class game:
     def __init__(self):
         self.board = [game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY]
 
-    def play(token=None, pos=None):
+    def play(self, token=None, pos=None):
         """
         Please finish
         """
+        self.board[pos] = token
         return "FIX", [ "ME", ]
