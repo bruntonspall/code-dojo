@@ -81,8 +81,8 @@ def test_can_place_counter_on_board():
     ttt = tic_tac_toe.game()
     ttt.play('X', 0)
     assert ttt.board == [ 'X', '_', '_', '_', '_', '_', '_', '_', '_', ]
-    ttt.play('X', 1)
-    assert ttt.board == [ 'X', 'X', '_', '_', '_', '_', '_', '_', '_', ]
+    ttt.play('O', 1)
+    assert ttt.board == [ 'X', 'O', '_', '_', '_', '_', '_', '_', '_', ]
 
 def test_cannot_place_token_on_existing_token():
     """ Test that we cannot place a token over hte top of an existing token """
