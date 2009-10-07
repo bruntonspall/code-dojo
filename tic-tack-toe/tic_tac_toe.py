@@ -1,20 +1,21 @@
+EMPTY = '_'
+CROSS = 'X'
+NAUGHT = 'O'
+
 class game:
     """
     A stub to change
     """
-    EMPTY = '_'
-    CROSS = 'X'
-    NAUGHT = 'O'
 
     def __init__(self):
-        self.board = [game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY, game.EMPTY]
-        self.play_next = self.CROSS
+        self.board = [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY]
+        self.play_next = CROSS
 
     def _toggle_turn(self):
-        if self.play_next == self.CROSS:
-            self.play_next = self.NAUGHT
+        if self.play_next == CROSS:
+            self.play_next = NAUGHT
         else:
-            self.play_next = self.CROSS
+            self.play_next = CROSS
 
     def play(self, token=None, pos=None):
         """
@@ -22,7 +23,7 @@ class game:
         """
         if token != self.play_next:
             return 'BAD TURN'
-        if self.board[pos] != self.EMPTY:
+        if self.board[pos] != EMPTY:
             return 'TAKEN'
         else:
             self.board[pos] = token

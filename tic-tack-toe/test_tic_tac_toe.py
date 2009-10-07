@@ -3,7 +3,7 @@ Nosetests for tic-tac-toe.py
 
 see http://somethingaboutorange.com/mrl/projects/nose/
 """
-import tic_tac_toe
+from tic_tac_toe import game, NAUGHT, CROSS, EMPTY
 
 def full_integration_test():
     """ 
@@ -43,55 +43,55 @@ def full_integration_test():
         "BAD TURN" - you attempt to place a piece out of turn
         "FOO WINS" - where FOO is either X or O when they've won the game
     """
-    #ttt = tic_tac_toe.game()
+    #ttt = game()
     #status, state = ttt.play()
-    #assert state == [ '_', '_', '_', '_', '_', '_', '_', '_', '_', ]
+    #assert state == [ EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, ]
     #assert status == 'OK'
-    #status, state = ttt.play('X', 0)
-    #assert state == [ 'X', '_', '_', '_', '_', '_', '_', '_', '_', ]
+    #status, state = ttt.play(CROSS, 0)
+    #assert state == [ CROSS, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, ]
     #assert status == 'OK'
-    #status, state = ttt.play('O', 5)
-    #assert state == [ 'X', '_', '_', '_', '_', 'O', '_', '_', '_', ]
+    #status, state = ttt.play(NAUGHT, 5)
+    #assert state == [ CROSS, EMPTY, EMPTY, EMPTY, EMPTY, NAUGHT, EMPTY, EMPTY, EMPTY, ]
     #assert status == 'OK'
-    #status, state = ttt.play('X', 0)
-    #assert state == [ 'X', '_', '_', '_', '_', 'O', '_', '_', '_', ]
+    #status, state = ttt.play(CROSS, 0)
+    #assert state == [ CROSS, EMPTY, EMPTY, EMPTY, EMPTY, NAUGHT, EMPTY, EMPTY, EMPTY, ]
     #assert status == 'TAKEN'
-    #status, state = ttt.play('O', 6)
-    #assert state == [ 'X', '_', '_', '_', '_', 'O', '_', '_', '_', ]
+    #status, state = ttt.play(NAUGHT, 6)
+    #assert state == [ CROSS, EMPTY, EMPTY, EMPTY, EMPTY, NAUGHT, EMPTY, EMPTY, EMPTY, ]
     #assert status == 'BAD TURN'
-    #status, state = ttt.play('X', 1)
-    #assert state == [ 'X', 'X', '_', '_', '_', 'O', '_', '_', '_', ]
+    #status, state = ttt.play(CROSS, 1)
+    #assert state == [ CROSS, CROSS, EMPTY, EMPTY, EMPTY, NAUGHT, EMPTY, EMPTY, EMPTY, ]
     #assert status == 'OK'
-    #status, state = ttt.play('O', 6)
-    #assert state == [ 'X', 'X', '_', '_', '_', 'O', 'O', '_', '_', ]
+    #status, state = ttt.play(NAUGHT, 6)
+    #assert state == [ CROSS, CROSS, EMPTY, EMPTY, EMPTY, NAUGHT, NAUGHT, EMPTY, EMPTY, ]
     #assert status == 'OK'
-    #status, state = ttt.play('X', 2)
-    #assert state == [ 'X', 'X', 'X', '_', '_', 'O', 'O', '_', '_', ]
+    #status, state = ttt.play(CROSS, 2)
+    #assert state == [ CROSS, CROSS, CROSS, EMPTY, EMPTY, NAUGHT, NAUGHT, EMPTY, EMPTY, ]
     #assert status == 'X WINS'
 
 def test_we_can_setup_board():
     """ This is a basic test to ensure that we can setup a valid board"""
 
-    ttt = tic_tac_toe.game()
-    assert ttt.board == [ '_', '_', '_', '_', '_', '_', '_', '_', '_', ]
+    ttt = game()
+    assert ttt.board == [ EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, ]
 
 def test_can_place_counter_on_board():
     """ Test that we can place tokens on the board """
 
-    ttt = tic_tac_toe.game()
-    ttt.play('X', 0)
-    assert ttt.board == [ 'X', '_', '_', '_', '_', '_', '_', '_', '_', ]
-    ttt.play('O', 1)
-    assert ttt.board == [ 'X', 'O', '_', '_', '_', '_', '_', '_', '_', ]
+    ttt = game()
+    ttt.play(CROSS, 0)
+    assert ttt.board == [ CROSS, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, ]
+    ttt.play(NAUGHT, 1)
+    assert ttt.board == [ CROSS, NAUGHT, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, ]
 
 def test_cannot_place_token_on_existing_token():
     """ Test that we cannot place a token over hte top of an existing token """
 
-    ttt = tic_tac_toe.game()
-    ttt.play('X', 0)
-    assert ttt.board == [ 'X', '_', '_', '_', '_', '_', '_', '_', '_', ]
-    status = ttt.play('O', 0)
-    assert ttt.board == [ 'X', '_', '_', '_', '_', '_', '_', '_', '_', ]
+    ttt = game()
+    ttt.play(CROSS, 0)
+    assert ttt.board == [ CROSS, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, ]
+    status = ttt.play(NAUGHT, 0)
+    assert ttt.board == [ CROSS, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, ]
     assert status == 'TAKEN'
 
 def test_that_x_must_go_first():
@@ -99,9 +99,9 @@ def test_that_x_must_go_first():
             Player X goes first
     """
 
-    ttt = tic_tac_toe.game()
-    status = ttt.play('O', 0)
-    assert ttt.board == [ '_', '_', '_', '_', '_', '_', '_', '_', '_', ]
+    ttt = game()
+    status = ttt.play(NAUGHT, 0)
+    assert ttt.board == [ EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, ]
     assert status == 'BAD TURN'
 
 def test_that_x_must_go_first():
@@ -109,15 +109,15 @@ def test_that_x_must_go_first():
             Each player takes alternating turns
     """
 
-    ttt = tic_tac_toe.game()
-    status = ttt.play('X', 0)
-    status = ttt.play('X', 1)
-    assert ttt.board == [ 'X', '_', '_', '_', '_', '_', '_', '_', '_', ]
+    ttt = game()
+    status = ttt.play(CROSS, 0)
+    status = ttt.play(CROSS, 1)
+    assert ttt.board == [ CROSS, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, ]
     assert status == 'BAD TURN'
 
     # Advance a turn
-    status = ttt.play('O', 1)
+    status = ttt.play(NAUGHT, 1)
 
-    status = ttt.play('O', 2)
-    assert ttt.board == [ 'X', 'O', '_', '_', '_', '_', '_', '_', '_', ]
+    status = ttt.play(NAUGHT, 2)
+    assert ttt.board == [ CROSS, NAUGHT, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, ]
     assert status == 'BAD TURN'
