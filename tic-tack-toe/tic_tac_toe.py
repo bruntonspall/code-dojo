@@ -11,6 +11,8 @@ class game:
         """
         Places a token if possible
         """
+        if token == 'O':
+            return 'BAD TURN'
         if self.board[pos] == self.EMPTY:
             self.board[pos] = token
         else:
