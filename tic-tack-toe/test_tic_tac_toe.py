@@ -5,7 +5,7 @@ see http://somethingaboutorange.com/mrl/projects/nose/
 """
 import tic_tac_toe
 
-def dummy_test():
+def full_integration_test():
     """ 
     A first test to get things rolling...
 
@@ -43,28 +43,34 @@ def dummy_test():
         "BAD TURN" - you attempt to place a piece out of turn
         "FOO WINS" - where FOO is either X or O when they've won the game
     """
+    #ttt = tic_tac_toe.game()
+    #status, state = ttt.play()
+    #assert state == [ '_', '_', '_', '_', '_', '_', '_', '_', '_', ]
+    #assert status == 'OK'
+    #status, state = ttt.play('X', 0)
+    #assert state == [ 'X', '_', '_', '_', '_', '_', '_', '_', '_', ]
+    #assert status == 'OK'
+    #status, state = ttt.play('O', 5)
+    #assert state == [ 'X', '_', '_', '_', '_', 'O', '_', '_', '_', ]
+    #assert status == 'OK'
+    #status, state = ttt.play('X', 0)
+    #assert state == [ 'X', '_', '_', '_', '_', 'O', '_', '_', '_', ]
+    #assert status == 'TAKEN'
+    #status, state = ttt.play('O', 6)
+    #assert state == [ 'X', '_', '_', '_', '_', 'O', '_', '_', '_', ]
+    #assert status == 'BAD TURN'
+    #status, state = ttt.play('X', 1)
+    #assert state == [ 'X', 'X', '_', '_', '_', 'O', '_', '_', '_', ]
+    #assert status == 'OK'
+    #status, state = ttt.play('O', 6)
+    #assert state == [ 'X', 'X', '_', '_', '_', 'O', 'O', '_', '_', ]
+    #assert status == 'OK'
+    #status, state = ttt.play('X', 2)
+    #assert state == [ 'X', 'X', 'X', '_', '_', 'O', 'O', '_', '_', ]
+    #assert status == 'X WINS'
+
+def setup_board_test():
+    """ This is a basic test to ensure that we can setup a valid board"""
+
     ttt = tic_tac_toe.game()
-    status, state = ttt.play()
-    assert state == [ '_', '_', '_', '_', '_', '_', '_', '_', '_', ]
-    assert status == 'OK'
-    status, state = ttt.play('X', 0)
-    assert state == [ 'X', '_', '_', '_', '_', '_', '_', '_', '_', ]
-    assert status == 'OK'
-    status, state = ttt.play('O', 5)
-    assert state == [ 'X', '_', '_', '_', '_', 'O', '_', '_', '_', ]
-    assert status == 'OK'
-    status, state = ttt.play('X', 0)
-    assert state == [ 'X', '_', '_', '_', '_', 'O', '_', '_', '_', ]
-    assert status == 'TAKEN'
-    status, state = ttt.play('O', 6)
-    assert state == [ 'X', '_', '_', '_', '_', 'O', '_', '_', '_', ]
-    assert status == 'BAD TURN'
-    status, state = ttt.play('X', 1)
-    assert state == [ 'X', 'X', '_', '_', '_', 'O', '_', '_', '_', ]
-    assert status == 'OK'
-    status, state = ttt.play('O', 6)
-    assert state == [ 'X', 'X', '_', '_', '_', 'O', 'O', '_', '_', ]
-    assert status == 'OK'
-    status, state = ttt.play('X', 2)
-    assert state == [ 'X', 'X', 'X', '_', '_', 'O', 'O', '_', '_', ]
-    assert status == 'X WINS'
+    assert ttt.board == [ '_', '_', '_', '_', '_', '_', '_', '_', '_', ]
